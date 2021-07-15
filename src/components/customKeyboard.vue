@@ -23,7 +23,7 @@
           :class="{
             'w-12': item,
             'w-max': item.name === 'backspace',
-            'w-10/12': item.name === 'spacebar',
+            'w-10/12': item.value === 'spacebar',
           }"
         >
           <span v-if="isShiftClicked">{{ item.alternate }}</span>
@@ -97,7 +97,7 @@ export default {
           ],
         },
 
-        { row: [{ name: "spacebar", value: " ", alternate: " " }] },
+        { row: [{ name: " ", value: "spacebar", alternate: " " }] },
       ],
     };
   },
