@@ -1,34 +1,41 @@
 <template>
-  <div class="text-sm flex flex-col justify-center items-center">
-    <div class="w-3/4 flex h-40 mt-3">
-      <input
+  <div class="text-sm">
+    <div class="w-3/4 h-40 flex h-max mx-auto mt-3">
+      <!-- <input
         type="text"
         :value="listDisplay"
         class="border border-black w-full h-full"
-      />
+      /> -->
+      <textarea
+        name=""
+        id=""
+        class="border border-black w-full h-full p-1 text-lg leading-normal tracking-wide"
+        v-model="listDisplay"
+      ></textarea>
     </div>
-
-    <div class="mt-36 p-5 w-max bg-gray-300 rounded shadow-lg">
-      <div
-        class="py-0.5 gap-1 flex"
-        v-for="(char, index) in characters"
-        :key="char.index"
-        :class="{ 'justify-center': index === 2 || 4 }"
-      >
-        <button
-          class="bg-white h-12 inline-block p-4"
-          v-for="item in char.row"
-          :key="item"
-          @click="btnClick(isShiftClicked ? item.alternate : item.name)"
-          :class="{
-            'w-12': item,
-            'w-max': item.name === 'backspace',
-            'w-10/12': item.value === 'spacebar',
-          }"
+    <div class="flex flex-col justify-center items-center">
+      <div class="mt-36 p-5 w-max bg-gray-300 rounded shadow-lg">
+        <div
+          class="py-0.5 gap-1 flex"
+          v-for="(char, index) in characters"
+          :key="char.index"
+          :class="{ 'justify-center': index === 2 || 4 }"
         >
-          <span v-if="isShiftClicked">{{ item.alternate }}</span>
-          <span v-else>{{ item.name }}</span>
-        </button>
+          <button
+            class="bg-white h-12 inline-block p-4"
+            v-for="item in char.row"
+            :key="item"
+            @click="btnClick(isShiftClicked ? item.alternate : item.name)"
+            :class="{
+              'w-12': item,
+              'w-max': item.name === 'backspace',
+              'w-10/12': item.value === 'spacebar',
+            }"
+          >
+            <span v-if="isShiftClicked">{{ item.alternate }}</span>
+            <span v-else>{{ item.name }}</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -111,7 +118,7 @@ export default {
         return "";
       }
       this.areaDisplay = [...this.areaDisplay, item];
-      console.log(this.areaDisplay);
+      // console.log(this.areaDisplay);
     },
     removeEl() {
       let removeElement = this.areaDisplay;
@@ -128,4 +135,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+textarea {
+  resize: none;
+}
 </style>
